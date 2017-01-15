@@ -11,4 +11,5 @@
 * vim
 
 ## Installation 
-* `$ stow vim`
+1. Clone this repository into your root directory `git clone https://github.com/JonahMania/dotfiles`
+2. Create symlinks with stow for example to link vim `$ stow vim`
