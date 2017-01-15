@@ -1,6 +1,6 @@
 # Dotfiles by Jonah Mania
 
-![htop](screenshots/htop.png)
+![htop](screenshots/pipes.png)
 
 ## Programs
 
