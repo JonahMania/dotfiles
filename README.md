@@ -8,13 +8,13 @@
 
 ## Programs
 * i3-gaps
-* i3bar
+* i3blocks
 * i3lock
 * feh
 * vim
 * firefox
 * ranger
-* dmenu
+* rofi
 * urxvt
-* mocp
+* moc
 * htop
