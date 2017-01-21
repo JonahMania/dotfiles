@@ -40,23 +40,6 @@ interval=10
 command=~/.config/scripts/bar/player.sh title
 separator=false
 interval=2
-#[previous]
-#command=~/.config/scripts/bar/player.sh previous
-#separator=false
-#interval=2
-#[play]
-#command=~/.config/scripts/bar/player.sh play
-#separator=false
-#interval=2
-#[next]
-#command=~/.config/scripts/bar/player.sh next
-#separator=false
-#interval=2
-# Memory usage
-#[memory]
-#label=MEM
-#separator=false
-#interval=30
 # Disk usage
 [disk]
 label=
@@ -64,28 +47,21 @@ label=
 interval=30
 separator=false
 # Network interface monitoring
-#
-# If the instance is not specified, use the interface used for default route.
-# The address can be forced to IPv4 or IPv6 with -4 or -6 switches.
 [iface]
 label=
 #instance=wlan0
 #color=#c2454e
 interval=10
 separator=false
-
 [wifi]
 #instance=wlp3s0
 interval=10
 separator=false
-
 # Battery indicator
-#
-# The battery instance defaults to 0.
-[battery]
-label=BAT
-#instance=1
-interval=30
+[power]
+separator=false
+command=~/.config/scripts/bar/power.sh
+interval=10
 
 # Date Time
 [time]
@@ -93,11 +69,3 @@ label=
 separator=false 
 command=date '+%B %d %l:%M %p'
 interval=5
-
-# Power
-#[power]
-#label=
-#separator=false
-#command=~/.config/scripts/bar/power.sh
-#interval=once
-
