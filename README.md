@@ -18,3 +18,4 @@
 * urxvt
 * moc
 * htop
+* ttf-iosevka 

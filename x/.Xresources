@@ -51,3 +51,6 @@ rofi.separator-style: solid
 ! Sets urxvt to fade when focus is lost
 !URxvt*fading: 15
 URxvt.internalBorder: 6
+URxvt.font: xft:Iosevka:Regular:size=10
+URxvt.boldFont: xft:Iosevka:Bold:size=10
+URxvt.letterSpace: 0

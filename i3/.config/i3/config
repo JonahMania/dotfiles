@@ -221,10 +221,10 @@ smart_borders no_gaps
 # for_window [class=".*"] title_format "<b>%title</b>"
 
 #                        border   bg          text         indicator
-client.focused           $color10 $color10 $color0 $color15
-client.unfocused         $color2 $color2 $color0 $color15
-client.focused_inactive  $color2 $color2 $color0 $color15
-client.urgent            $color2 $color2 $color0 $color15
+client.focused           $color9 $color9 $color0 $color15
+client.unfocused         $color1 $color1 $color0 $color15
+client.focused_inactive  $color1 $color1 $color0 $color15
+client.urgent            $color1 $color1 $color0 $color15
 
 mode "gaps" {
     bindsym plus gaps inner current plus 5
