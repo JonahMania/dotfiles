@@ -246,7 +246,7 @@ exec --no-startup-id "i3-msg 'workspace 1:; exec urxvt'"
 # Start programs for workspace 2
 exec --no-startup-id "i3-msg 'workspace 2:; exec firefox'"
 # Start programs for workspace 3
-exec --no-startup-id "i3-msg 'workspace 3:; exec urxvt -e mocp'"
+exec --no-startup-id "i3-msg 'workspace 3:; exec spotify'"
 # Start programs for workspace 4
 workspace 4: gaps inner 20
 workspace 4: gaps outer 140
