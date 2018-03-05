@@ -57,14 +57,9 @@ set $color15 #f6f6c9
 set $barBackground  #16191d
 
 # Border Size
-set $borderSize 2
+set $borderSize 3
 
 font pango:monospace 8
-
-set $ws1 "1:"
-set $ws2 "2:"
-set $ws3 "3:"
-set $ws9 "9:"
 
 ######################
 #      Settings      #
@@ -126,27 +121,27 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
 bindsym $mod+4 workspace 4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace $ws9
+bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
 bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # reload the configuration file
@@ -183,33 +178,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 ##########################
-#           Bar          #
-##########################
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-
-
-bar {
-      font pango:DejaVu Sans Mono, Awesome 8
-      strip_workspace_numbers yes
-      status_command i3blocks
-      height 20
-       
-      colors {
-          background $barBackground
-          statusline $color15
-          separator #666666
-
-          focused_workspace  $barBackground $barBackground $color9
-          active_workspace   $barBackground $barBackground $color9
-          inactive_workspace $barBackground $barBackground $color11
-          urgent_workspace   $barBackground $barBackground $color9
-          binding_mode       $barBackground $barBackground #ffffff
-    }
-        
-}
-##########################
 #     Window Style       #
 ##########################
 
@@ -221,10 +189,10 @@ smart_borders no_gaps
 # for_window [class=".*"] title_format "<b>%title</b>"
 
 #                        border   bg          text         indicator
-client.focused           $color9 $color9 $color0 $color15
-client.unfocused         $color1 $color1 $color0 $color15
-client.focused_inactive  $color1 $color1 $color0 $color15
-client.urgent            $color1 $color1 $color0 $color15
+client.focused           $color7 $color7 $color0 $color15
+client.unfocused         $color0 $color0 $color0 $color15
+client.focused_inactive  $color0 $color0 $color0 $color15
+client.urgent            $color0 $color0 $color0 $color15
 
 mode "gaps" {
     bindsym plus gaps inner current plus 5
@@ -235,21 +203,3 @@ mode "gaps" {
 }
 
 bindsym $mod+g mode "gaps"
-
-##########################
-#    Startup Programs    #
-##########################
-
-# Start programs for workspace 1
-exec --no-startup-id "i3-msg 'workspace 1:; exec urxvt'" 
-exec --no-startup-id "i3-msg 'workspace 1:; exec urxvt'" 
-# Start programs for workspace 2
-exec --no-startup-id "i3-msg 'workspace 2:; exec firefox'"
-# Start programs for workspace 3
-exec --no-startup-id "i3-msg 'workspace 3:; exec spotify'"
-# Start programs for workspace 4
-workspace 4: gaps inner 20
-workspace 4: gaps outer 140
-exec --no-startup-id "i3-msg 'workspace 9:; exec urxvt -e htop'"
-# Return to workspace 1
-exec --no-startup-id "i3-msg 'workspace 9:;"
