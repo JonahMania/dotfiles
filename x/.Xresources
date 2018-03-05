@@ -48,9 +48,7 @@ rofi.separator-style: solid
 *.cursorBlink: true
 *.dynamicColors:on
 
-! Sets urxvt to fade when focus is lost
-!URxvt*fading: 15
-URxvt.internalBorder: 6
+URxvt.internalBorder: 8
 URxvt.font: xft:Iosevka:Regular:size=10
 URxvt.boldFont: xft:Iosevka:Bold:size=10
 URxvt.letterSpace: 0

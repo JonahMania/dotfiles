@@ -15,6 +15,10 @@
 #Set background
 exec --no-startup-id ~/.fehbg &
 
+#Start polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+
 set $mod Mod4
 
 # Colors
