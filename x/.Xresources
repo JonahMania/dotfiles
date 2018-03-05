@@ -37,10 +37,10 @@
 
 ! Rofi colors
 rofi.color-enabled: true
-rofi.color-window: #16191d, #a2d9b1, #7cbf9e
-rofi.color-normal: #16191d, #f6f6c9, #16191d, #7cbf9e, #16191D
-rofi.color-active: #16191d, #f6f6c9, #16191d, #7cbf9e, #16191D
-rofi.color-urgent: #16191D, #f6f6c9, #16191d, #7cbf9e, #16191D
+rofi.color-window: #16191d, #16191d, #7cbf9e
+rofi.color-normal: #16191d, #f6f6c9, #16191d, #7cbf9e, #16191d
+rofi.color-active: #16191d, #f6f6c9, #16191d, #7cbf9e, #16191d
+rofi.color-urgent: #16191D, #f6f6c9, #16191d, #7cbf9e, #16191d
 rofi.separator-style: solid
 
 *.scrollBar: false
