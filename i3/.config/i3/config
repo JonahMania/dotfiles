@@ -18,7 +18,6 @@ exec --no-startup-id ~/.fehbg &
 #Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-
 set $mod Mod4
 
 # Colors
@@ -85,29 +84,25 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 
 # lock the screen
-bindsym $mod+l exec i3lock -i ~/.config/wallpaper/wallpaper.png -u
+bindsym $mod+e exec i3lock -i ~/.config/wallpaper/wallpaper.png -u
 
-# start dmenu (a program launcher)
+# start rofi
 bindsym $mod+d exec rofi -show run
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+# Change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
-# alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+# Change window position
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -186,7 +181,7 @@ bindsym $mod+r mode "resize"
 ##########################
 
 new_window pixel $borderSize
-gaps inner 10
+gaps inner 25
 smart_gaps on
 smart_borders no_gaps
 
@@ -194,9 +189,9 @@ smart_borders no_gaps
 
 #                        border   bg          text         indicator
 client.focused           $color7 $color7 $color0 $color15
-client.unfocused         $color0 $color0 $color0 $color15
-client.focused_inactive  $color0 $color0 $color0 $color15
-client.urgent            $color0 $color0 $color0 $color15
+client.unfocused         $color4 $color4 $color0 $color15
+client.focused_inactive  $color4 $color4 $color0 $color15
+client.urgent            $color4 $color4 $color0 $color15
 
 mode "gaps" {
     bindsym plus gaps inner current plus 5

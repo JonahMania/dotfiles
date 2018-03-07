@@ -49,6 +49,6 @@ rofi.separator-style: solid
 *.dynamicColors:on
 
 URxvt.internalBorder: 8
-URxvt.font: xft:Iosevka:Regular:size=10
-URxvt.boldFont: xft:Iosevka:Bold:size=10
+URxvt.font: xft:Iosevka:Regular:size=12
+URxvt.boldFont: xft:Iosevka:Bold:size=12
 URxvt.letterSpace: 0

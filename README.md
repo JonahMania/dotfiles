@@ -8,7 +8,7 @@
 
 ## Programs
 * i3-gaps
-* i3blocks
+* polybar
 * i3lock
 * feh
 * vim
@@ -18,4 +18,5 @@
 * urxvt
 * moc
 * htop
-* ttf-iosevka 
+* ttf-iosevka
+* ttf-material-design-icons

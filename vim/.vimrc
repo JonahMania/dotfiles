@@ -12,6 +12,9 @@ set showmatch
 set incsearch
 "Highlight search results
 set hlsearch
+"Highlight tabs and trailing white spaces
+:highlight ExtraWhitespace ctermbg=red guibg=red
+:match ExtraWhitespace /\s\+$/
 
 augroup configgroup
    autocmd!
