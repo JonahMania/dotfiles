@@ -1,6 +1,6 @@
 # Dotfiles by Jonah Mania
 
-![htop](screenshots/pipes.png)
+![htop](screenshots/archeyMarch.jpg)
 
 ## Installation
 1. Clone this repository into your home directory `git clone https://github.com/JonahMania/dotfiles`
