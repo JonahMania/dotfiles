@@ -10,9 +10,9 @@
     workspace_urgent_bg = ${xrdb:color1}
 
     volume_bg = ${xrdb:color1}
-    network_bg = ${xrdb:color12}
+    network_bg = ${xrdb:color2}
     battery_bg = ${xrdb:color7}
-    date_bg = ${xrdb:color6}
+    date_bg = ${xrdb:color12}
 
 [bar/example]
     width = 100%
