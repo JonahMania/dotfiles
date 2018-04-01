@@ -15,6 +15,10 @@ set hlsearch
 "Highlight tabs and trailing white spaces
 :highlight ExtraWhitespace ctermbg=1
 :match ExtraWhitespace /\s\+$/
+"Set explorer to tree view
+let g:netrw_liststyle = 3
+"Remove explorer banner
+let g:netrw_banner = 0
 
 "Set statusbar color
 hi StatusLine ctermbg=0 ctermfg=2
