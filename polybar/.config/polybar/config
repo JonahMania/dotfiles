@@ -13,7 +13,6 @@
     network_bg = ${xrdb:color2}
     battery_bg = ${xrdb:color7}
     date_bg = ${xrdb:color12}
-
 [bar/example]
     width = 100%
     height = 24
@@ -38,7 +37,7 @@
 
     tray-position = right
     tray-padding = 2
-    tray-transparent = true
+    tray-transparent = false
 
 [module/workspaces]
     type = internal/i3

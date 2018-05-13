@@ -1,2 +1,2 @@
 #!/bin/sh
-'feh' '--bg-fill' '/home/jonahmania/.config/wallpaper/wallpaper.jpg' 
+'feh' '--randomize' '--bg-fill' '--no-fehbg' '/home/jonahmania/.config/wallpaper/'

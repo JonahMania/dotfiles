@@ -84,7 +84,20 @@ bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+q kill
 
 # lock the screen
-bindsym $mod+e exec i3lock -i ~/.config/wallpaper/wallpaper.png -u
+bindsym $mod+e exec i3lock -t -i ~/.config/wallpaper/wallpaper_1.jpg \
+    --veriftext="" --wrongtext="" --noinputtext="" \
+    --indpos="400:h-70" --radius=24 --ring-width=3 \
+    --ringcolor=f6f6c9ff --insidecolor=00000000 --line-uses-inside \
+    --keyhlcolor=c2454eff --bshlcolor=c2454eff --separatorcolor=00000000 \
+    --insidevercolor=00000000 --insidewrongcolor=00000000 \
+    --ringvercolor=f6f6c9ff --ringwrongcolor=c2454eff \
+    --clock \
+    --timepos="190:h-70" \
+    --timecolor=e8dfd6ff \
+    --timestr="%A %I:%M %p"\
+    --datestr "Type password to unlock..." \
+    --datepos="148:h-45" \
+    --datecolor=e8dfd6ff
 
 # start rofi
 bindsym $mod+d exec rofi -show run

@@ -9,7 +9,7 @@
 ## Programs
 * i3-gaps
 * polybar
-* i3lock
+* [i3lock-color](https://aur.archlinux.org/packages/i3lock-color/)
 * feh
 * vim
 * firefox
