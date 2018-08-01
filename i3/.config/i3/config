@@ -59,6 +59,9 @@ set $color15 #f6f6c9
 # Bar background
 set $barBackground  #16191d
 
+# Border Color
+set $borderColor #e8dfd6
+
 # Border Size
 set $borderSize 3
 
@@ -201,7 +204,7 @@ smart_borders no_gaps
 # for_window [class=".*"] title_format "<b>%title</b>"
 
 #                        border   bg          text         indicator
-client.focused           $color7 $color7 $color0 $color15
+client.focused           $borderColor $borderColor $color0 $color15
 client.unfocused         $color4 $color4 $color0 $color15
 client.focused_inactive  $color4 $color4 $color0 $color15
 client.urgent            $color4 $color4 $color0 $color15
