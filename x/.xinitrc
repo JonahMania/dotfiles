@@ -48,8 +48,11 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-#twm &
+# Set wifi interface enviornment variable
+WIFI_INTERFACE=$(ip link | grep ': wlp' | awk '{print substr($2, 1, length($2)-1)}')
+export WIFI_INTERFACE
 
+#twm &
 exec i3
 
 # Turn off screen saver

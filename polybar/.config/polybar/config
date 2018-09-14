@@ -104,7 +104,7 @@
 
 [module/wireless-network]
     type = internal/network
-    interface = wlp4s0
+    interface = ${env:WIFI_INTERFACE}
     ping-interval = 3
 
     format-connected = <label-connected>
