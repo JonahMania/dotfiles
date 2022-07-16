@@ -1,32 +1,21 @@
-set shiftwidth=4
+" General settings
 set tabstop=4
+set shiftwidth=4
 set expandtab
 set background=dark
-set number
-syntax on
-set dir=~/.vim/swaps//
-
-"Highlight matching [{()}]
 set showmatch
-"Search while characters are entered
 set incsearch
-"Highlight search results
 set hlsearch
-"Highlight tabs and trailing white spaces
-:highlight ExtraWhitespace ctermbg=1
-:match ExtraWhitespace /\s\+$/
-"Set explorer to tree view
-let g:netrw_liststyle = 3
-"Remove explorer banner
-let g:netrw_banner = 0
+set relativenumber
+set nonumber
 
-"Set statusbar color
-hi StatusLine ctermbg=0 ctermfg=2
-"Set tab bar colors
-hi TabLine     ctermfg=3 ctermbg=none cterm=none
-hi TabLineSel  ctermfg=none ctermbg=4 cterm=bold
-hi TabLineFill ctermfg=none ctermbg=none cterm=none
-hi Title       ctermfg=none ctermbg=none cterm=none
+"Highlight tabs and trailing white spaces TODO fix
+highlight ExtraWhitespace ctermbg=DarkRed
+match ExtraWhitespace /\s\+$/
+
+" TODO Move and create vars
+hi LineTooLong cterm=bold ctermbg=DarkRed
+match LineTooLong /\%>82v.\+/
 
 augroup configgroup
    autocmd!
@@ -34,22 +23,98 @@ augroup configgroup
    autocmd BufEnter Makefile setlocal noexpandtab
 augroup END
 
-"Toggle relative numbering
-function TogRel()
-   set relativenumber!
-endfunc
+" Colors
+let color_tab_primary_fg='White'
+let color_tab_primary_bg='None'
+let color_tab_secondary_fg='Black'
+let color_tab_secondary_bg='DarkGrey'
+let color_tab_buffers_fg='Black'
+let color_tab_buffers_bg='LightGreen'
+let color_status_mode_fg='Black'
+let color_status_mode_insert_bg='LightBlue'
+let color_status_mode_normal_bg='LightGreen'
+let color_status_mode_visual_bg='LightYellow'
+let color_status_mode_command_bg = 'LightBlue'
+let color_status_buffer_fg='Black'
+let color_status_buffer_bg='Grey'
+let color_status_type_fg='White'
+let color_status_type_bg='DarkGrey'
+let color_status_position_fg='Black'
+let color_status_position_bg='Grey'
+let color_status_line_bg='DarkGrey'
+let color_status_line_fg='White'
 
-"Set ctrl e to open the file explorer
-map <c-e> :Ex <cr>
+" Tabline
+exe 'hi primary_tab_color ctermfg=' . color_tab_primary_fg ' ctermbg=' . color_tab_primary_bg
+exe 'hi secondary_tab_color ctermfg=' . color_tab_secondary_fg ' ctermbg=' . color_tab_secondary_bg
+exe 'hi buffers_color ctermfg=' . color_tab_buffers_fg ' ctermbg=' . color_tab_buffers_bg
 
-"Set ctrl r to toggle relative numbering
-map <c-t> :call TogRel()<cr>
+function! Draw_tabline()
+    " TODO Prevent overflow
+    let buffers = []
+    let line_text = ''
+    let num_buffers = 0
 
-"Set ctrl t to open a new tab
-map <c-t> :tabnew<cr>
+    " Collect active tabs
+    for buffer in getbufinfo()
+        if buffer.listed
+            let name = fnamemodify(buffer.name, ':t')
+            let number = buffer.bufnr
+            let primary = buffer.loaded
+            let buffers += [{'name': name, 'number': number, 'primary': primary}]
+        endif
+    endfor
+    let num_buffers = len(buffers)
 
-"Set ctrl l to move to next tab
-map <c-l> :tabnext<cr>
+    " Draw text
+    for buffer_index in range(num_buffers)
+        let buffer = buffers[buffer_index]
 
-"Set ctrl h to move to previous tab
-map <c-h> :tabprev<cr>
+        if buffer.primary
+            let line_text .= '%#primary_tab_color#'
+            let line_text .= '\ ' . buffer.name . '\ ' . buffer.number . '\ '
+        else
+            let line_text .= '%#secondary_tab_color#'
+            let line_text .= '\ ' . buffer.name . '\ ' . buffer.number . '\ '
+        endif
+    endfor
+    let line_text .= '%#secondary_tab_color#'
+    let line_text .= '%='
+    let line_text .= '%#buffers_color#'
+    let line_text .= '\ Buffers\ '
+    exe 'set tabline=' . line_text
+endfunction
+
+set showtabline=2
+autocmd CmdwinEnter * call Draw_tabline()
+autocmd BufNew * call Draw_tabline()
+autocmd BufEnter * call Draw_tabline()
+autocmd BufWritePost * call Draw_tabline()
+autocmd VimResized * call Draw_tabline()
+autocmd BufDelete * call Draw_tabline()
+
+" Statusline
+exe 'hi normal_color ctermbg=' . color_status_mode_normal_bg . ' ctermfg=' . color_status_mode_fg
+exe 'hi insert_color ctermbg=' . color_status_mode_insert_bg . ' ctermfg=' . color_status_mode_fg
+exe 'hi visual_color ctermbg=' . color_status_mode_visual_bg . ' ctermfg=' . color_status_mode_fg
+exe 'hi command_color ctermbg=' . color_status_mode_command_bg . ' ctermfg=' . color_status_mode_fg
+exe 'hi buffer_color ctermbg=' . color_status_buffer_bg . ' ctermfg=' . color_status_buffer_fg
+exe 'hi type_color ctermbg=' . color_status_type_bg . ' ctermfg=' . color_status_type_fg
+exe 'hi position_color ctermbg=' . color_status_position_bg . ' ctermfg=' . color_status_position_fg
+exe 'hi statusline_color ctermbg=' . color_status_line_bg . ' ctermfg=' . color_status_line_fg
+
+set noshowmode
+set laststatus=2
+set statusline=
+set statusline+=%#normal_color#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline+=%#insert_color#%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%#visual_color#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=%#command_color#%{(mode()=='c')?'\ \ \ CMD\ \ \ ':''}
+set statusline+=%#buffer_color#\ %n\ 
+set statusline+=%#type_color#\ %Y\ 
+set statusline+=%#type_slash_color#
+set statusline+=%#position_color#\ %3l:%-2c\ 
+set statusline+=%#statusline_color#
+set statusline+=\ %m\ %r
+set statusline+=%=
+set statusline+=%p\ 
