@@ -1,0 +1,28 @@
+# Terminal emulator
+super + Return
+    kitty
+
+# Firefox
+super + w
+    firefox
+
+# Focus node
+super + {h,j,k,l}
+    bspc node -f {west, south, north, east}
+
+# Move node
+super + shift + {h,j,k,l}
+    bspc node -n {west, south, north, east}
+
+# Focus desktop
+super + {1-9}
+    bspc desktop -f '^{1-9}'
+
+# Move to another desktop
+super + shift + {1-9}
+  bspc node -d '^{1-9}'
+
+# Close and kill window
+super + {_,shift + }q
+    bspc node -{c,k}
+

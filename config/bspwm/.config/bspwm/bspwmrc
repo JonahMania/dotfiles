@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Source colors
+source ~/.config/scripts/colors.sh
+
+# Launch keybindings
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor -d I II III IV V VI
+
+bspc config automatic_scheme longest_side
+
+bspc config border_width 4
+bspc config window_gap 24
+bspc config normal_border_color $COLOR_WINDOW_BORDER
+bspc config focused_border_color $COLOR_WINDOW_BORDER_PRIMARY
+
+bspc config split_ratio 0.50
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+bspc config single_monocle true
+
+# Launch topbar
+polybar top_bar --config=~/.config/polybar/config.ini
+
+# Set background
+feh --bg-scale ~/.config/wallpaper/wallpaper.png
