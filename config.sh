@@ -19,6 +19,8 @@ PACKAGES=(
     "kitty"
     "neofetch"
     "sxhkd"
+    "network-manager"
+    "rofi"
 )
 
 function install() {

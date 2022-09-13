@@ -2,6 +2,10 @@
 super + Return
     kitty
 
+# Launcher
+super + space
+    rofi -show run
+
 # Firefox
 super + w
     firefox
