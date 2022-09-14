@@ -25,8 +25,13 @@ PACKAGES=(
 
 function install() {
     # Install packages
-    # TODO Check if on Ubuntu or Arch to use apt-get or pacman
-     sudo apt-get install ${PACKAGES[*]}
+    UNAME_OUT=$(uname -v)
+    if echo $UNAME_OUT | grep -q Ubuntu; then
+        sudo apt-get install ${PACKAGES[*]}
+    fi
+    if echo $UNAME_OUT | grep -q Arch; then
+        sudo packman -S ${PACKAGES[*]}
+    fi
     # Copy wallpaper
     mkdir -p $WALLPAPER_DIR
     if [ ! -f "$WALLPAPER_FILE" ]; then
