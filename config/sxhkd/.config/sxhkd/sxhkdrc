@@ -6,10 +6,6 @@ super + Return
 super + space
     rofi -show run
 
-# Firefox
-super + w
-    firefox
-
 # Focus node
 super + {h,j,k,l}
     bspc node -f {west, south, north, east}
@@ -30,3 +26,6 @@ super + shift + {1-9}
 super + {_,shift + }q
     bspc node -{c,k}
 
+# Float node
+super + f
+    bspc node -t ~floating
