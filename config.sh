@@ -19,18 +19,18 @@ PACKAGES=(
     "kitty"
     "neofetch"
     "sxhkd"
-    "network-manager"
+    "networkmanager"
     "rofi"
 )
 
 function install() {
     # Install packages
-    UNAME_OUT=$(uname -v)
+    UNAME_OUT=$(uname -a)
     if echo $UNAME_OUT | grep -q Ubuntu; then
         sudo apt-get install ${PACKAGES[*]}
     fi
-    if echo $UNAME_OUT | grep -q Arch; then
-        sudo packman -S ${PACKAGES[*]}
+    if echo $UNAME_OUT | grep -q arch; then
+        sudo pacman -S ${PACKAGES[*]}
     fi
     # Copy wallpaper
     mkdir -p $WALLPAPER_DIR
@@ -68,6 +68,7 @@ case $COMMAND in
     $COMMAND_REFRESH)
         refresh
         ;;
+    # TODO add stow
     *)
         echo $BASE_HELP
         ;;
