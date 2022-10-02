@@ -8,6 +8,7 @@ set incsearch
 set hlsearch
 set relativenumber
 set nonumber
+syntax on
 
 "Highlight tabs and trailing white spaces TODO fix
 highlight ExtraWhitespace ctermbg=DarkRed
@@ -50,21 +51,33 @@ exe 'hi secondary_tab_color ctermfg=' . color_tab_secondary_fg ' ctermbg=' . col
 exe 'hi buffers_color ctermfg=' . color_tab_buffers_fg ' ctermbg=' . color_tab_buffers_bg
 exe 'hi buffers_arrow_color ctermfg=' . color_tab_buffers_bg . ' ctermbg=' . color_tab_secondary_bg
 
+function! Get_buffers()
+    let buffers = []
+    if exists("*getbufinfo")
+        for buffer in getbufinfo()
+            if buffer.listed
+                let name = fnamemodify(buffer.name, ':t')
+                let number = buffer.bufnr
+                let primary = buffer.loaded
+                let buffers += [{'name': name, 'number': number, 'primary': primary}]
+            endif
+        endfor
+    else
+        let buffer_numbers = filter(range(1, bufnr('$')), 'buflisted(v:val)') 
+        for number in buffer_numbers
+            let name = fnamemodify(bufname(number), ':t')
+            let primary = bufloaded(numbebuffer_numberr)
+            let buffers += [{'name': name, 'number': number, 'primary': primary}]
+        endfor
+    endif
+    return buffers
+endfunction
+
 function! Draw_tabline()
-    " TODO Prevent overflow
     let buffers = []
     let line_text = ''
     let num_buffers = 0
-
-    " Collect active tabs
-    for buffer in getbufinfo()
-        if buffer.listed
-            let name = fnamemodify(buffer.name, ':t')
-            let number = buffer.bufnr
-            let primary = buffer.loaded
-            let buffers += [{'name': name, 'number': number, 'primary': primary}]
-        endif
-    endfor
+    let buffers = Get_buffers()
     let num_buffers = len(buffers)
 
     " Draw text
