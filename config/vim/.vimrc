@@ -16,7 +16,7 @@ match ExtraWhitespace /\s\+$/
 
 " TODO Move and create vars
 hi LineTooLong cterm=bold ctermbg=DarkRed
-match LineTooLong /\%>82v.\+/
+match LineTooLong /\%>100v.\+/
 
 augroup configgroup
    autocmd!
@@ -35,7 +35,7 @@ let color_status_mode_fg='Black'
 let color_status_mode_insert_bg='Red'
 let color_status_mode_normal_bg='Blue'
 let color_status_mode_visual_bg='Yellow'
-let color_status_mode_command_bg = 'LightBlue'
+let color_status_mode_command_bg = 'Magenta'
 let color_status_buffer_fg='Black'
 let color_status_buffer_bg='Grey'
 let color_status_type_fg='White'
