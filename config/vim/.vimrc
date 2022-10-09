@@ -10,7 +10,7 @@ set relativenumber
 set nonumber
 syntax on
 
-"Highlight tabs and trailing white spaces TODO fix
+" Highlight tabs and trailing white spaces TODO fix
 highlight ExtraWhitespace ctermbg=DarkRed
 match ExtraWhitespace /\s\+$/
 
@@ -66,7 +66,7 @@ function! Get_buffers()
         let buffer_numbers = filter(range(1, bufnr('$')), 'buflisted(v:val)') 
         for number in buffer_numbers
             let name = fnamemodify(bufname(number), ':t')
-            let primary = bufloaded(numbebuffer_numberr)
+            let primary = bufloaded(number)
             let buffers += [{'name': name, 'number': number, 'primary': primary}]
         endfor
     endif
