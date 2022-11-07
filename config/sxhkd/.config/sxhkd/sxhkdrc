@@ -1,9 +1,9 @@
 # Terminal emulator
-super + Return
+super + t
     kitty
 
 # Launcher
-super + space
+super + Return
     rofi -show run
 
 # Focus node

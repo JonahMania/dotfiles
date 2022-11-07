@@ -3,9 +3,6 @@
 # Source colors
 source ~/.config/scripts/colors.sh
 
-# Launch keybindings
-pgrep -x sxhkd > /dev/null || sxhkd &
-
 bspc monitor -d I II III IV V VI
 
 bspc config automatic_scheme longest_side
@@ -20,8 +17,15 @@ bspc config borderless_monocle true
 bspc config gapless_monocle true
 bspc config single_monocle true
 
-# Launch topbar
-polybar top_bar --config=~/.config/polybar/config.ini
+# Launch keybindings
+pgrep -x sxhkd > /dev/null || sxhkd &
 
 # Set background
 feh --bg-scale ~/.config/wallpaper/wallpaper.png
+
+# Launch topbar
+polybar top_bar --config=~/.config/polybar/config.ini
+
+# Disable x screen saver
+xset s off
+xset -dpms
