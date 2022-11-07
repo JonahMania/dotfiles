@@ -10,6 +10,9 @@ set relativenumber
 set nonumber
 syntax on
 
+" Markdown language highlighting
+let g:markdown_fenced_languages = ['python', 'c', 'cpp', 'vim']
+
 " Highlight tabs and trailing white spaces TODO fix
 highlight ExtraWhitespace ctermbg=DarkRed
 match ExtraWhitespace /\s\+$/
