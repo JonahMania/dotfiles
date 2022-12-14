@@ -11,6 +11,7 @@ LOCAL_WALLPAPER_FILE="wallpaper/wallpaper.png"
 FONTS_DIR="$HOME/.local/share/fonts"
 LOCAL_FONTS_DIR="fonts"
 CONFIGS=$(ls config)
+
 PACKAGES=(
     "stow"
     "bspwm"
@@ -21,6 +22,7 @@ PACKAGES=(
     "sxhkd"
     "networkmanager"
     "rofi"
+    "xorg-xinit"
 )
 
 function install() {
