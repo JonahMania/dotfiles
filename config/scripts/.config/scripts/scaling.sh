@@ -4,6 +4,7 @@ case $DISPLAY_RESOLUTION in
     3840x2160)
         # Bar
         export BAR_HEIGHT="48px"
+        export BAR_WORKSPACE_PADDING="10px"
         export BAR_TEXT_FONT="Iosevka Term:size=13;2"
         export BAR_ICON_FONT="Iosevka Term:size=32:weight=light;7"
         
@@ -15,6 +16,7 @@ case $DISPLAY_RESOLUTION in
     *)
         # Bar
         export BAR_HEIGHT="32px"
+        export BAR_WORKSPACE_PADDING="6px"
         export BAR_TEXT_FONT="Iosevka Term:size=12;2"
         export BAR_ICON_FONT="Iosevka Term:size=26:weight=light;6"
 
