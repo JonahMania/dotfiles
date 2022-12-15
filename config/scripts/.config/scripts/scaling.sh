@@ -15,7 +15,7 @@ case $DISPLAY_RESOLUTION in
 
     *)
         # Bar
-        export BAR_HEIGHT="32px"
+        export BAR_HEIGHT="38px"
         export BAR_WORKSPACE_PADDING="6px"
         export BAR_TEXT_FONT="Iosevka Term:size=12;2"
         export BAR_ICON_FONT="Iosevka Term:size=26:weight=light;6"
