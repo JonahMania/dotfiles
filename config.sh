@@ -23,6 +23,7 @@ PACKAGES=(
     "networkmanager"
     "rofi"
     "xorg-xinit"
+    "neovim"
 )
 
 function install() {
