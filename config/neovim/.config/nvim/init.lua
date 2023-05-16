@@ -14,12 +14,15 @@ vim.o.hlsearch = true
 vim.o.relativenumber = true
 vim.o.number = false
 -- Color column
-vim.o.colorcolumn = "100"
+vim.fn.matchadd("ColorColumn", [[\%100v]], 100)
 -- Background
 vim.o.background = "dark"
+-- Markdown
+vim.o.conceallevel = 2
+vim.g.markdown_fenced_languages = {"bash=sh", "python", "c", "cpp"}
 
 -- Set color column highlight color
-vim.api.nvim_set_hl(0, "ColorColumn", {ctermbg="DarkGrey"})
+vim.api.nvim_set_hl(0, "ColorColumn", {ctermbg="DarkRed"})
 -- Highlight tabs and trailing white spaces
 vim.api.nvim_set_hl(0, "ExtraWhitespace", {ctermbg="DarkRed"})
 vim.cmd([[match ExtraWhitespace /\s\+$/]])
