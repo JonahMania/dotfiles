@@ -23,6 +23,8 @@ PACKAGES=(
     "networkmanager"
     "rofi"
     "xorg-xinit"
+    "xorg-server"
+    "firefox"
     "neovim"
 )
 
