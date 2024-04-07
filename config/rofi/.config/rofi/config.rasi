@@ -1,4 +1,0 @@
-configuration {
-    font: "Iosevka Term 14";
-}
-@theme "~/.config/rofi/theme.rasi"
