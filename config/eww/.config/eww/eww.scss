@@ -1,0 +1,63 @@
+$background-color: #1A1B26;
+$foreground-color: #A9B1D6;
+$active-color: #7AA2F7;
+$inactive-color: #414868;
+
+$text-font-size: 14px;
+$icon-font-size: 32px;
+
+* {
+    all: unset;
+    font-family: Iosevka Term;
+}
+
+.bar {
+    background-color: $background-color;
+    color: $foreground-color;
+    font-size: $text-font-size;
+    padding: 4px;
+}
+
+.tray-item {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.tray-item-text {
+    padding-left: 4px;
+}
+
+.divider {
+    color: $inactive-color;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.icon {
+    font-size: $icon-font-size;
+}
+
+.right-container {
+    padding-right: 4px;
+}
+
+.workspace {
+    font-size: $icon-font-size;
+    padding-left: 4px;
+}
+
+.workspace-active {
+    color: $active-color;
+}
+
+.workspace-empty {
+    color: $inactive-color;
+}
+
+.charged {
+    color: $foreground-color;
+}
+
+.depleted {
+    color: $inactive-color;
+}

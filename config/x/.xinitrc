@@ -7,4 +7,4 @@ xset -dpms
 # Set capslock to ctrl
 setxkbmap -option ctrl:nocaps
 
-exec bspwm
+# exec bspwm

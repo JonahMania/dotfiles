@@ -1,0 +1,101 @@
+; To import other configs --> (include "./path/to/your/file.yuck")
+
+(defwidget bar []
+    (centerbox :orientation "h"
+        (workspaces)
+        (time)
+        (right-container)
+    )
+)
+
+(defwidget right-container []
+    (box :class "right-container" :orientation "h" :space-evenly false :halign "end"
+        (network)
+        (brightness)
+        (volume)
+        (label :class "divider" :text "|")
+        (battery)
+    )
+)
+
+(deflisten workspaces :initial "[]" "./workspaces.py")
+(defvar workspace-icons "${{'active': '●', 'empty': '●', 'occupied': '◍'}}")
+(defwidget workspaces []
+    (box :space-evenly false
+      (for workspace in workspaces
+            (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
+                (box :class "workspace workspace-${workspace.state}"
+                    (label :text "${workspace-icons[workspace.state]}")
+                )
+            )
+        )
+    )
+)
+
+(defpoll time :interval "1s"
+  "date +'%I:%M%p %A %B %d %Y'")
+(defwidget time []
+    (box :class "time"
+        (label :text "${time}")
+    )
+)
+
+(defwidget network []
+    (label :class "icon tray-item" :text "▼")
+)
+
+(defpoll brightness :interval "1s" "./brightness.py -g")
+(defvar brightness_toggled false)
+(defwidget brightness []
+    (eventbox :class "tray-item"
+        :onhover "eww update brightness_toggled=true"
+        :onhoverlost "eww upvolumedate brightness_toggled=false"
+        ; :onscoll "./brightness.py -i 1"
+        (box :orientation "h" :space-evenly false
+            (label :class "icon" :text "🌒")
+            (revealer :transition "slideright" :reveal brightness_toggled
+                (label :class "tray-item-text" :text "${brightness}%")
+            )
+        )
+    )
+)
+
+(defpoll volume :interval "1s" "./volume.py -g")
+(defvar volume_toggled false)
+(defwidget volume []
+    (eventbox :class "tray-item"
+     :onhover "eww update volume_toggled=true"
+     :onhoverlost "eww update volume_toggled=false"
+     ; TODO Make volume -i return new volume
+     ; :onscroll ("{}" == "down" ? "./volume.py -i 1" : "./volume.py -d 1")
+        (box :orientation "h" :space-evenly false
+            (label :class "icon" :text "◢")
+            (revealer :transition "slideright" :reveal volume_toggled
+                (label :class "tray-item-text" :text "${volume}%")
+            )
+        )
+    )
+)
+
+(defvar battery-icons "${{'Charging': '⋆', 'Discharging': '❤', 'Full': '⋆'}}")
+(defwidget battery []
+    (box :class "icon" :space-evenly false :tooltip "${EWW_BATTERY.BAT0.capacity}%"
+        (label :class "${EWW_BATTERY.BAT0.capacity > 20 ? 'charged' : 'depleted'}" :text "${battery-icons[EWW_BATTERY.BAT0.status]}")
+        (label :class "${EWW_BATTERY.BAT0.capacity > 40 ? 'charged' : 'depleted'}" :text "${battery-icons[EWW_BATTERY.BAT0.status]}")
+        (label :class "${EWW_BATTERY.BAT0.capacity > 60 ? 'charged' : 'depleted'}" :text "${battery-icons[EWW_BATTERY.BAT0.status]}")
+        (label :class "${EWW_BATTERY.BAT0.capacity > 80 ? 'charged' : 'depleted'}" :text "${battery-icons[EWW_BATTERY.BAT0.status]}")
+    )
+)
+
+(defwindow bar
+    :monitor 0
+    :exclusive true
+    :windowtype "dock"
+    :geometry (geometry :x "0%"
+                        :y "0%"
+                        :width "100%"
+                        :height "10px"
+                        :anchor "top center")
+    :reserve (struts :side "top" :distance "4%")
+    (bar)
+)
