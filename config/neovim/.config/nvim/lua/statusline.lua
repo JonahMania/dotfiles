@@ -30,26 +30,38 @@ Statusline.modes = {
   ["t"] = {"TERMINAL", "statusMagenta"},
 }
 
-Statusline.active = function()
+function statusLine(isActive)
     local mode = Statusline.modes[vim.api.nvim_get_mode().mode]
+    local modeColor = "%#"..mode[2].."#"
+    local colorA = "%#statusGrey#"
+    local colorB = "%#statusDarkGrey#"
+    if not isActive then
+        modeColor = "%#statusDarkGrey#"
+        colorA = "%#statusDarkGrey#"
+        colorB = "%#statusDarkGrey#"
+    end
     local statusLine = ""
+
     -- Mode
     if mode ~= nil then
-        statusLine = statusLine.."%#"..mode[2].."# "..mode[1].." "
+        statusLine = statusLine..modeColor.." "..mode[1].." "
     end
     -- Buffer number
-    statusLine = statusLine.."%#statusGrey# %n "
+    statusLine = statusLine..colorA.." %n "
     -- Type
-    statusLine = statusLine.."%#statusDarkGrey# %Y "
+    statusLine = statusLine..colorB.." %Y "
     -- Position
-    statusLine = statusLine.."%#statusGrey# %3l:%-2c "
+    statusLine = statusLine..colorA.." %3l:%-2c "
     -- DeadSpace
-    statusLine = statusLine.."%#statusDarkGrey#"
     -- Modified, read only, percentage
-    statusLine = statusLine.." %m %r%=%p "
+    statusLine = statusLine..colorB.." %m %r%=%t %p "
     return statusLine
 end
 
+Statusline.active = function()
+    return statusLine(true)
+end
+
 Statusline.inactive = function()
-    return "%#statusGrey# %f"
+    return statusLine(false)
 end
