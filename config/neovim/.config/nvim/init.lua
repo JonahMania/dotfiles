@@ -1,6 +1,8 @@
 require("packages")
 require("statusline")
 
+-- Ctrl + j enters normal mode
+vim.keymap.set("i", "<C-j>", "<Esc>", { silent = true, nowait = true })
 -- Tabs
 vim.o.expandtab = true
 vim.o.tabstop = 4
@@ -86,3 +88,15 @@ function switchSourceHeader(opts)
     end
 end
 vim.api.nvim_create_user_command('Oc', switchSourceHeader, {})
+
+function openBuild(opts)
+    buffer_name = vim.api.nvim_buf_get_name(0)
+    buffer_folder = buffer_name:sub(0, buffer_name:find("/[^/]*$"))
+    build_file = buffer_folder .. "BUILD"
+    if vim.fn.filereadable(build_file) ~= 0 then
+        vim.cmd.edit(build_file)
+        return
+    end
+    print("No BUILD file at " .. build_file)
+end
+vim.api.nvim_create_user_command('Ob', openBuild, {})
