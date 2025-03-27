@@ -2,7 +2,7 @@ require("packages")
 require("statusline")
 
 -- Ctrl + j enters normal mode
-vim.keymap.set("i", "<C-j>", "<Esc>", { silent = true, nowait = true })
+vim.keymap.set("", "<C-j>", "<Esc>", { silent = true, nowait = true })
 -- Tabs
 vim.o.expandtab = true
 vim.o.tabstop = 4
