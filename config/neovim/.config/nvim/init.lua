@@ -1,8 +1,15 @@
 require("packages")
 require("statusline")
 
+-- Since V0.10 these lines are needed to make color schemes work
+if vim.version().minor >= 10 then
+    vim.o.termguicolors = false
+    vim.cmd 'colorscheme vim'
+end
+
 -- Ctrl + j enters normal mode
-vim.keymap.set("", "<C-j>", "<Esc>", { silent = true, nowait = true })
+vim.keymap.set({"i", "v"}, "<C-j>", "<Esc>", { silent = true, nowait = true })
+vim.keymap.set("t", "<C-j>", "<C-\\><C-n>", { silent = true, nowait = true })
 -- Tabs
 vim.o.expandtab = true
 vim.o.tabstop = 4
@@ -31,6 +38,7 @@ vim.cmd([[match ExtraWhitespace /\s\+$/]])
 
 -- Statusline
 vim.o.laststatus = 2
+Statusline.registerColors()
 vim.api.nvim_exec([[
   augroup Statusline
   au!
@@ -100,3 +108,39 @@ function openBuild(opts)
     print("No BUILD file at " .. build_file)
 end
 vim.api.nvim_create_user_command('Ob', openBuild, {})
+
+function renderMarkdown(opts)
+    if vim.fn.executable("glow") == 0 then
+        print("Glow is not installed and required to render markdown files")
+        return false
+    end
+
+    buffer_name = vim.api.nvim_buf_get_name(0)
+    buffer_number = vim.fn.bufnr()
+    local current_window = vim.api.nvim_get_current_win()
+    vim.cmd("belowright vsplit term://glow -t " .. buffer_name)
+    local channel = vim.bo.channel
+    vim.api.nvim_set_current_win(current_window)
+
+    -- Register auto command to reload the renderer when the markdown file is saved
+    local auto_command_id = vim.api.nvim_create_autocmd({'BufWritePost'}, {
+        buffer = buffer_number,
+        desc = "Reload markdown renderer on save",
+        callback = function(ev)
+            -- If the channel is closed delete this auto command
+            return not pcall(vim.fn.chansend, channel, "r")
+        end
+    })
+
+    -- Register auto command to clean up commands when the buffer is deleted
+    vim.api.nvim_create_autocmd({"BufDelete"}, {
+        buffer = buffer_number,
+        desc = "Remove markdown renderer reload command on buffer delete",
+        callback = function(ev)
+            vim.api.nvim_del_autocmd(auto_command_id)
+            return true
+        end
+    })
+end
+vim.api.nvim_create_user_command('Md', renderMarkdown, {})
+
