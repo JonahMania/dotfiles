@@ -14,12 +14,28 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = "\\" -- Leader key for packages
 
 require("lazy").setup({
-    'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    dependencies = {"nvim-lua/plenary.nvim"},
     keys = {
-      {'<leader>f', "<cmd>Telescope find_files<cr>", desc = "Find file"},
-      {'<leader>b', "<cmd>Telescope buffers<cr>", desc = "Buffers"},
-      {'<leader>g', "<cmd>Telescope live_grep<cr>", desc = "Live grep"},
+      {"<C-f>", "<cmd>Telescope find_files<cr>", desc = "Find file"},
+      {"<C-b>", "<cmd>Telescope buffers<cr>", desc = "Buffers"},
+      {"<C-g>", "<cmd>Telescope live_grep<cr>", desc = "Live grep"},
     },
+})
+
+require("telescope").setup({
+    defaults = {
+        mappings = {
+            n = {
+                ["<C-k>"] = "close",
+                ["<C-h>"] = "which_key",
+            },
+            i = {
+                ["<C-j>"] = {"<esc>", type = "command"},
+                ["<C-k>"] = "close",
+                ["<C-h>"] = "which_key",
+            },
+        }
+    }
 })
