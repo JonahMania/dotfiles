@@ -1,5 +1,8 @@
 set -o vi
 
+# bind ctrl + j to esc
+bind '"\C-J": "\e"'
+
 alias icat="kitty +kitten icat"
 
 # ls aliases
