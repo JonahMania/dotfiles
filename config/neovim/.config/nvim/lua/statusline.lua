@@ -1,21 +1,13 @@
--- Statusline colors
-vim.api.nvim_set_hl(0, "statusBlue", {ctermbg="Blue", ctermfg="Black"})
-vim.api.nvim_set_hl(0, "statusYellow", {ctermbg="Yellow", ctermfg="Black"})
-vim.api.nvim_set_hl(0, "statusRed", {ctermbg="Red", ctermfg="Black"})
-vim.api.nvim_set_hl(0, "statusMagenta", {ctermbg="Magenta", ctermfg="Black"})
-vim.api.nvim_set_hl(0, "statusGrey", {ctermbg="Grey", ctermfg="Black"})
-vim.api.nvim_set_hl(0, "statusDarkGrey", {ctermbg="DarkGrey", ctermfg="White"})
-
 Statusline = {}
 Statusline.modes = {
   ["n"] = {"NORMAL", "statusBlue"},
   ["no"] = {"NORMAL", "statusBlue"},
   ["v"] = {"VISUAL", "statusYellow"},
   ["V"] = {"VISUAL LINE", "statusYellow"},
-  ["^V"] = {"VISUAL BLOCK", "statusYellow"},
+  [""] = {"VISUAL BLOCK", "statusYellow"},
   ["s"] = {"SELECT", "statusYellow"},
   ["S"] = {"SELECT LINE", "statusYellow"},
-  ["^S"] = {"SELECT BLOCK", "statusBlue"},
+  [""] = {"SELECT BLOCK", "statusBlue"},
   ["i"] = {"INSERT", "statusRed"},
   ["ic"] = {"INSERT", "statusRed"},
   ["R"] = {"REPLACE", "statusRed"},
@@ -28,24 +20,35 @@ Statusline.modes = {
   ["r?"] = {"CONFIRM", "statusMagenta"},
   ["!"] = {"SHELL", "statusMagenta"},
   ["t"] = {"TERMINAL", "statusMagenta"},
+  ["nt"] = {"TERMINAL", "statusMagenta"},
 }
 
+Statusline.registerColors = function()
+    vim.api.nvim_set_hl(0, "statusBlue", {ctermbg="Blue", ctermfg="Black"})
+    vim.api.nvim_set_hl(0, "statusYellow", {ctermbg="Yellow", ctermfg="Black"})
+    vim.api.nvim_set_hl(0, "statusRed", {ctermbg="Red", ctermfg="Black"})
+    vim.api.nvim_set_hl(0, "statusMagenta", {ctermbg="Magenta", ctermfg="Black"})
+    vim.api.nvim_set_hl(0, "statusGrey", {ctermbg="Grey", ctermfg="Black"})
+    vim.api.nvim_set_hl(0, "statusDarkGrey", {ctermbg="DarkGrey", ctermfg="White"})
+end
+
 function statusLine(isActive)
+    local statusLine = ""
     local mode = Statusline.modes[vim.api.nvim_get_mode().mode]
-    local modeColor = "%#"..mode[2].."#"
-    local colorA = "%#statusGrey#"
+    local modeColor = "%#statusDarkGrey#"
+    local colorA = "%#statusDarkGrey#"
     local colorB = "%#statusDarkGrey#"
-    if not isActive then
-        modeColor = "%#statusDarkGrey#"
-        colorA = "%#statusDarkGrey#"
+    if mode == nil then
+        mode = {vim.api.nvim_get_mode().mode, "statusRed"}
+    end
+    if isActive then
+        modeColor = "%#"..mode[2].."#"
+        colorA = "%#statusGrey#"
         colorB = "%#statusDarkGrey#"
     end
-    local statusLine = ""
 
     -- Mode
-    if mode ~= nil then
-        statusLine = statusLine..modeColor.." "..mode[1].." "
-    end
+    statusLine = statusLine..modeColor.." "..mode[1].." "
     -- Buffer number
     statusLine = statusLine..colorA.." %n "
     -- Type
