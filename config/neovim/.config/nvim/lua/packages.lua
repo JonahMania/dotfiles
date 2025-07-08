@@ -28,13 +28,10 @@ require("telescope").setup({
     defaults = {
         mappings = {
             n = {
-                ["<C-k>"] = "close",
-                ["<C-h>"] = "which_key",
+                ["<C-j>"] = "close",
             },
             i = {
                 ["<C-j>"] = {"<esc>", type = "command"},
-                ["<C-k>"] = "close",
-                ["<C-h>"] = "which_key",
             },
         }
     }
