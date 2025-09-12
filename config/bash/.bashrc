@@ -22,3 +22,6 @@ alias bb='bazel build'
 alias br='bazel run'
 alias bt='bazel test --test_output=all'
 alias btt='bazel test --test_output=all --keep_going --test_tag_filters=native'
+
+# Ipod tools
+alias ipodtools='~/.config/scripts/ipodtools.py'
