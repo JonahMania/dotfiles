@@ -55,6 +55,7 @@ class IPodTools:
             user_input = self.promptString(f"Artist name ({artist}):")
             if user_input != "":
                 artist = user_input
+
         print(f"New artist: {artist}")
         response = self.promptBool(
                 f"Update all {len(self.mp3_files)} files under {self.path}? [y/n]: ")
@@ -63,7 +64,7 @@ class IPodTools:
                 output_file = Path(mp3_file)
                 output_file = Path(output_file.parent,
                     f"{output_file.stem}__output__{output_file.suffix}")
-                run(["ffmpeg", "-i", mp3_file, "-metadata", f"artist=\"{artist}\"", "-codec",
+                run(["ffmpeg", "-i", mp3_file, "-metadata", f"artist={artist}", "-codec",
                      "copy", output_file])
                 run(["mv", output_file, mp3_file])
 
